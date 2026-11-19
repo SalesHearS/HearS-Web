@@ -1,0 +1,44 @@
+/* HearS pages.css: page-level refinements only (components live in components.css). */
+.article { padding-block: var(--space-8); }
+.article .prose-body { max-width: 720px; }
+.article .prose-body h2 { margin-top: var(--space-7); }
+.article .prose-body ul, .article .prose-body ol { padding-left: var(--space-5); max-width: var(--measure); }
+.article .hero-fig { margin: 0 0 var(--space-6); }
+.article .hero-fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
+.article .byline { color: var(--color-text-muted); font-size: var(--fs-small); margin-bottom: var(--space-5); }
+.article-cta { margin-top: var(--space-8); padding: var(--space-6); background: var(--color-bg-alt); border-left: 4px solid var(--hears-red); border-radius: var(--radius); }
+.article-cta h2 { margin-top: 0; font-size: var(--fs-h3); }
+.not-found { padding-block: var(--space-9); text-align: left; }
+.not-found h2 { margin-top: var(--space-7); font-size: var(--fs-h3); }
+
+.article .prose-body figure.fig { margin: 0 0 var(--space-6); }
+.article .prose-body figure.fig img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.article .prose-body figure.fig figcaption { margin-top: var(--space-2); font-size: .8125rem; color: var(--slate-600); }
+
+
+/* v8: D1 — keep anchored/scrolled content clear of the sticky header
+   (utility bar + header row ≈ 116px; mobile header row 64px) */
+html { scroll-padding-top: 132px; }
+section[id], article[id], h2[id], h3[id], [id="mes"], [id="quote"] { scroll-margin-top: 132px; }
+@media (max-width: 760px) { html { scroll-padding-top: 84px; } section[id], article[id], h2[id], h3[id], [id="mes"], [id="quote"] { scroll-margin-top: 84px; } }
+
+/* v8: D2 — true 3-column Solutions mega menu; each column scrolls on its own */
+.has-sub:has(> .sub--mega3) { position: static; }
+.sub--mega3 { left: 0; right: 0; width: auto; grid-template-columns: 1.2fr 1fr 1fr; gap: var(--space-5, 24px); max-height: min(78vh, 640px); overflow: hidden; padding: var(--space-4, 16px) var(--space-5, 24px); }
+.has-sub:hover .sub--mega3, .has-sub:focus-within .sub--mega3, .sub-toggle[aria-expanded="true"] + .sub--mega3 { display: grid; }
+.sub--mega3 > .sub__col { min-width: 0; }
+.sub--mega3 .sub__colhead { font-weight: 700; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--hears-red, #c8102e); margin: 0 0 var(--space-2, 8px); }
+.sub--mega3 .sub__col > ul { max-height: calc(min(78vh, 640px) - 72px); overflow-y: auto; padding-right: 4px; }
+@media (max-width: 1080px) { .sub--mega3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .sub--mega3 { max-height: 70vh; overflow-y: auto; } .has-sub .sub-toggle[aria-expanded="true"] + .sub--mega3 { display: block; } .sub--mega3 .sub__col > ul { max-height: none; overflow: visible; } }
+
+/* v8: E2(3) Zalo line inside CTA bands */
+.cta__zalo { margin-top: var(--space-3, 12px); font-size: .95rem; }
+.cta__zalo a { color: inherit; font-weight: 700; text-decoration: underline; }
+
+/* v8: D3 — location facts strip in the About hero */
+.hero__facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 var(--space-3, 12px); }
+.hero__facts span { border: 1px solid currentColor; border-radius: 999px; padding: 4px 12px; font-size: .82rem; font-weight: 600; }
+
+/* v8: D4 — red diagonal stripe decorations removed (heroes read cleaner without them) */
+.theme-hears.hero--dark::before, .theme-hears.hero--dark::after { content: none; }
